@@ -1,3 +1,4 @@
 <?php 
-echo 'Teste git';
+echo 'Bem vindos';
+echo 'Mais uma alteração';
  ?>
