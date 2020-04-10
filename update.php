@@ -1,20 +1,23 @@
 <?php 
 include_once './conexao.php';
 
-/*$sql = "INSERT INTO produtos (descricao, quantidade, valor) 
-		VALUES (?, ?, ?)";*/
-$sql = "INSERT INTO produtos (descricao, quantidade, valor) 
-		VALUES (:desc, :qtd, :val)";
+$sql = "UPDATE produtos SET 
+		descricao = :desc, 
+		quantidade = :qtd, 
+		valor = :val 
+		WHERE id = :id";
 
 $stmt = $conexao->prepare($sql);
 
-$descricao = 'Mouse Gamer';
-$quantidade = 60;
-$valor = 290.90;
+$descricao = 'Placa mãe';
+$quantidade = 7;
+$valor = 780;
+$id = 2;
 
 $stmt->bindParam(':desc', $descricao);
 $stmt->bindParam(':qtd', $quantidade);
 $stmt->bindParam(':val', $valor);
+$stmt->bindParam(':id', $id);
 /*$stmt->bindValue(1, 'Monitor');
 $stmt->bindValue(2, 17);
 $stmt->bindValue(3, 299);*/
