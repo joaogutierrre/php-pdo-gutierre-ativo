@@ -1,28 +1,16 @@
 <?php 
 include_once './conexao.php';
 
-/*$sql = "INSERT INTO produtos (descricao, quantidade, valor) 
-		VALUES (?, ?, ?)";*/
-$sql = "INSERT INTO produtos (descricao, quantidade, valor) 
-		VALUES (:desc, :qtd, :val)";
-
+//$id = 1;
+$sql = "SELECT * FROM produtos";// where id = :id
 $stmt = $conexao->prepare($sql);
-
-$descricao = 'Mouse Gamer';
-$quantidade = 60;
-$valor = 290.90;
-
-$stmt->bindParam(':desc', $descricao);
-$stmt->bindParam(':qtd', $quantidade);
-$stmt->bindParam(':val', $valor);
-/*$stmt->bindValue(1, 'Monitor');
-$stmt->bindValue(2, 17);
-$stmt->bindValue(3, 299);*/
-
+//$stmt->bindParam(':id', $id);
 $stmt->execute();
-/*$a = 'Pdot';
-$b = '3';
-$c = '2';*/
+$produtos = $stmt->fetchAll();
+
+foreach ($produtos as $produto) {
+	echo 'Descricao: '.$produto['descricao'].' - Valor: R$ '.number_format($produto['valor'],2,',','.').' - Quantidade: '.$produto['valor'].'<br>';
+}
 
 
 
